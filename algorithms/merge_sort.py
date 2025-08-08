@@ -1,4 +1,4 @@
-def merge_sort(list):
+def sort(list):
     recursion(list)
 
 def recursion(list):

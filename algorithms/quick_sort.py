@@ -1,4 +1,4 @@
-def quick_sort(list):
+def sort(list):
     recursion(list,0,len(list)-1)
 
 def recursion(list,start,end):

@@ -1,4 +1,4 @@
-def bubble_sort(list):
+def sort(list):
     while True:
         flag = False
         for i in range(len(list)-1):
