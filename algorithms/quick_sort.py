@@ -1,3 +1,6 @@
+import time
+import sorting_visualizer
+
 def sort(list):
     recursion(list,0,len(list)-1)
 
@@ -11,6 +14,8 @@ def recursion(list,start,end):
 def partition(list, low, high):
     i1=low-1
     for i2 in range(low,high):
+        sorting_visualizer.visualize_list(list,len(list))
+        time.sleep(1)
         if list[i2]<list[high]:
             i1+=1
             swap(list,i1,i2)
