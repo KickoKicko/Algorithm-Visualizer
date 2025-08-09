@@ -1,26 +1,26 @@
 import time
 import sorting_visualizer
 
-def sort(list):
-    recursion(list,0,len(list)-1)
+def sort(sv):
+    recursion(sv,0,len(sv.list)-1)
 
-def recursion(list,start,end):
+def recursion(sv,start,end):
     if start-end==1:
         return
-    pivot = partition(list,start,end)
-    recursion(list,start,pivot-1)
-    recursion(list,pivot+1,end)
+    pivot = partition(sv,start,end)
+    recursion(sv,start,pivot-1)
+    recursion(sv,pivot+1,end)
 
-def partition(list, low, high):
+def partition(sv, low, high):
     i1=low-1
     for i2 in range(low,high):
-        sorting_visualizer.visualize_list(list,len(list))
-        time.sleep(1)
-        if list[i2]<list[high]:
+        sv.update(i2)
+        time.sleep(0.1)
+        if sv.list[i2]<sv.list[high]:
             i1+=1
-            swap(list,i1,i2)
+            swap(sv.list,i1,i2)
     i1+=1
-    swap(list,i1,high)
+    swap(sv.list,i1,high)
     return i1
 
 def swap(list,i1,i2):
