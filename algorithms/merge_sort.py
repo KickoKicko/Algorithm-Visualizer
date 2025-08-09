@@ -1,17 +1,19 @@
-def sort(list):
-    recursion(list)
+import sorting_visualizer
 
-def recursion(list):
+def sort(sv):
+    recursion(sv,sv.list)
+
+def recursion(sv,list):
     if len(list) ==1:
         return
     l1 = [i for i in list[0:len(list)//2]]
     l2 = [i for i in list[len(list)//2:len(list)]]
-    recursion(l1)
-    recursion(l2)
-    merge(list,l1, l2)
+    recursion(sv,l1)
+    recursion(sv,l2)
+    merge(sv, list,l1, l2)
 
 
-def merge(list,l1, l2):
+def merge(sv,list,l1, l2):
     i1=0
     i2=0
     for i in range(len(list)):
@@ -29,3 +31,4 @@ def merge(list,l1, l2):
             else:
                 list[i] = l2[i2]
                 i2 =i2+1
+        sv.update()

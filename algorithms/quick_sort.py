@@ -1,4 +1,3 @@
-import time
 import sorting_visualizer
 
 def sort(sv):
@@ -15,7 +14,6 @@ def partition(sv, low, high):
     i1=low-1
     for i2 in range(low,high):
         sv.update(i2)
-        time.sleep(0.1)
         if sv.list[i2]<sv.list[high]:
             i1+=1
             swap(sv.list,i1,i2)
