@@ -1,5 +1,7 @@
 from algorithms import bubble_sort, merge_sort, quick_sort, insertion_sort
 from sorting_visualizer import sorting_visualizer
+from pathfinding_visualizer import pathfinding_visualizer
+from maze import maze,cell,Direction
 import random
 import sys
 
@@ -23,7 +25,30 @@ def main(sort,list_size):
     sv.display(5)
     print(sv.list)
 
+def main2(list_size):
+    cell_type1 = cell([Direction.RIGHT])
+    cell_type2 = cell([Direction.LEFT])
+    cell_type3 = cell([Direction.UP])
+    cell_type4 = cell([Direction.DOWN])
+    cell_types = [cell_type1,cell_type2,cell_type3,cell_type4]
+
+    width =5
+    height =5
+    maze_cells = [[0 for _ in range(width)] for _ in range(height)]
+    for i in range(width):
+        for j in range(height):
+            r =random.randint(0,len(cell_types)-1)
+            maze_cells[i][j] = cell_types[r]
+    maze2 = maze(maze_cells,width,height)
+    pv = pathfinding_visualizer(maze2)
+    pv.display_maze()
+    while(True):
+        print
+
+
 
 if __name__ == "__main__":
     if len(sys.argv)==3:
         main(sys.argv[1], int(sys.argv[2]))
+    elif len(sys.argv)==2:
+        main2(int(sys.argv[1]))
