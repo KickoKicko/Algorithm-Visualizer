@@ -8,6 +8,7 @@ def recursion(sv,list):
         return
     l1 = [i for i in list[0:len(list)//2]]
     l2 = [i for i in list[len(list)//2:len(list)]]
+    sv.update(len(l1))
     recursion(sv,l1)
     recursion(sv,l2)
     merge(sv, list,l1, l2)
@@ -31,4 +32,4 @@ def merge(sv,list,l1, l2):
             else:
                 list[i] = l2[i2]
                 i2 =i2+1
-        sv.update()
+        #sv.update()

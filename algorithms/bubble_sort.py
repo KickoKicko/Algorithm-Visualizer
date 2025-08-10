@@ -13,4 +13,4 @@ def sort(sv):
 
 def swap(sv, i1, i2):
     sv.list[i1], sv.list[i2] = sv.list[i2],sv.list[i1]
-    sv.update()
+    sv.update(i2)

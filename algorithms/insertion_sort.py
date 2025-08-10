@@ -7,11 +7,10 @@ def sort(sv):
 def move_back(sv, x):
     list = sv.list
     i=x-1
-    while(list[i]>list[x]):
+    while i>=0 and list[i]>list[x]:
         i-=1
     temp = list[x]
-    for i in range(i+1,x)[::-1]:
-        list[i+1]=list[i]
-        sv.update(x)
-    list[i]=temp
-    #sv.update(x)
+    for j in range(x-1,i,-1):
+        list[j+1]=list[j]
+        sv.update(j,x)
+    list[i+1]=temp
