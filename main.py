@@ -26,19 +26,12 @@ def main(sort,list_size):
     print(sv.list)
 
 def main2(list_size):
-    cell_type1 = cell([Direction.RIGHT])
-    cell_type2 = cell([Direction.LEFT])
-    cell_type3 = cell([Direction.UP])
-    cell_type4 = cell([Direction.DOWN])
-    cell_types = [cell_type1,cell_type2,cell_type3,cell_type4]
-
-    width =17
+    width =list_size
     height = width
     maze_cells = [[0 for _ in range(width)] for _ in range(height)]
     for i in range(width):
         for j in range(height):
-            r =random.randint(0,len(cell_types)-1)
-            maze_cells[i][j] = cell([])#cell_types[r]
+            maze_cells[i][j] = cell([],(i,j))
     maze2 = maze(maze_cells,width,height)
     maze2.generate((0,0))
     pv = pathfinding_visualizer(maze2)
