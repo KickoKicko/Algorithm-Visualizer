@@ -33,9 +33,8 @@ def main2(list_size):
         for j in range(height):
             maze_cells[i][j] = cell([],(i,j))
     maze2 = maze(maze_cells,width,height)
-    maze2.generate((0,0))
     pv = pathfinding_visualizer(maze2)
-    pv.display_maze()
+    pv.generate((0,0))
     while(True):
         print
 
