@@ -19,17 +19,17 @@ class pathfinding_visualizer:
     def display_maze(self):
         for i in range(self.maze.width):
             for j in range(self.maze.height):
-                pygame.draw.rect(self.screen,(255,155,255),(10+i*60,10+j*60,50,50))
+                pygame.draw.rect(self.screen,(255,255,255),(10+i*60,10+j*60,50,50))
                 self.display_cell_walls(self.maze.cells[i][j],60*(i+1)-40,60*(j+1)-40)
         pygame.display.update()
     
     def display_cell_walls(self, cell,xpos,ypos):
         for d in cell.directions:
             if d == Direction.UP:
-                pygame.draw.rect(self.screen,(255,155,255),(xpos,ypos-25,30,30))
+                pygame.draw.rect(self.screen,(255,155,255),(xpos,ypos-15,30,30))
             if d == Direction.RIGHT:
-                pygame.draw.rect(self.screen,(255,155,255),(xpos+25,ypos,30,30))
+                pygame.draw.rect(self.screen,(255,155,255),(xpos+15,ypos,30,30))
             if d == Direction.DOWN:
-                pygame.draw.rect(self.screen,(255,155,255),(xpos,ypos+25,30,30))
+                pygame.draw.rect(self.screen,(255,155,255),(xpos,ypos+15,30,30))
             if d == Direction.LEFT:
-                pygame.draw.rect(self.screen,(255,155,255),(xpos+25,ypos,30,30))
+                pygame.draw.rect(self.screen,(255,155,255),(xpos-15,ypos,30,30))
