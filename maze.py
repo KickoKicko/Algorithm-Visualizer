@@ -20,4 +20,5 @@ class cell:
         self.directions=directions
         self.possible_directions=[Direction.UP,Direction.DOWN,Direction.LEFT,Direction.RIGHT]
         self.coordinates=coordinates
+        self.visited = False
         

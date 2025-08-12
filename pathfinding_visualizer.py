@@ -57,32 +57,28 @@ class pathfinding_visualizer:
             current_cell.possible_directions.pop(randint)
 
             if next_direction == Direction.RIGHT and current_cell.coordinates[0]<self.maze.width-1:
-                if len(self.maze.cells[current_cell.coordinates[0]+1][current_cell.coordinates[1]].possible_directions) != 4:
-                    continue
-                current_cell.directions.append(Direction.RIGHT)
-                self.maze.cells[current_cell.coordinates[0]+1][current_cell.coordinates[1]].directions.append(Direction.LEFT)
-                cell_list.append(self.maze.cells[current_cell.coordinates[0]+1][current_cell.coordinates[1]])
-
+                opposite_direction, x_change, y_change = Direction.LEFT,1,0
             elif next_direction == Direction.DOWN and current_cell.coordinates[1]<self.maze.height-1:
-                if len(self.maze.cells[current_cell.coordinates[0]][current_cell.coordinates[1]+1].possible_directions) != 4:
-                    continue
-                current_cell.directions.append(Direction.DOWN)
-                self.maze.cells[current_cell.coordinates[0]][current_cell.coordinates[1]+1].directions.append(Direction.UP)
-                cell_list.append(self.maze.cells[current_cell.coordinates[0]][current_cell.coordinates[1]+1])
-
+                opposite_direction,x_change,y_change = Direction.UP,0,1
             elif next_direction == Direction.LEFT and current_cell.coordinates[0]>0:
-                if len(self.maze.cells[current_cell.coordinates[0]-1][current_cell.coordinates[1]].possible_directions) != 4:
-                    continue
-                current_cell.directions.append(Direction.LEFT)
-                self.maze.cells[current_cell.coordinates[0]-1][current_cell.coordinates[1]].directions.append(Direction.RIGHT)
-                cell_list.append(self.maze.cells[current_cell.coordinates[0]-1][current_cell.coordinates[1]])
-
+                opposite_direction,x_change,y_change = Direction.RIGHT,-1,0
             elif next_direction == Direction.UP and current_cell.coordinates[1]>0:
-                if len(self.maze.cells[current_cell.coordinates[0]][current_cell.coordinates[1]-1].possible_directions) != 4:
-                    continue
-                current_cell.directions.append(Direction.UP)
-                self.maze.cells[current_cell.coordinates[0]][current_cell.coordinates[1]-1].directions.append(Direction.DOWN)
-                cell_list.append(self.maze.cells[current_cell.coordinates[0]][current_cell.coordinates[1]-1])
+                opposite_direction,x_change,y_change = Direction.DOWN,0,-1
+            else:
+                continue
+        
+            if len(self.maze.cells[current_cell.coordinates[0]+x_change][current_cell.coordinates[1]+y_change].possible_directions) != 4:
+                continue
+            current_cell.directions.append(next_direction)
+            self.maze.cells[current_cell.coordinates[0]+x_change][current_cell.coordinates[1]+y_change].directions.append(opposite_direction)
+            cell_list.append(self.maze.cells[current_cell.coordinates[0]+x_change][current_cell.coordinates[1]+y_change])
+
             self.display_cell_walls(current_cell)
             pygame.display.update()
-            time.sleep(0.01)
+            #time.sleep(0.01)
+
+    def draw_square(self,pos):
+        pygame.draw.rect(self.screen,(255,0,0),(10+pos[0]*60,10+pos[1]*60,50,50))
+        pygame.display.update()
+
+

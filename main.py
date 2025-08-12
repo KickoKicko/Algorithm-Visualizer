@@ -1,4 +1,5 @@
 from algorithms import bubble_sort, merge_sort, quick_sort, insertion_sort
+from algorithms.pathfinding import bfs
 from sorting_visualizer import sorting_visualizer
 from pathfinding_visualizer import pathfinding_visualizer
 from maze import maze,cell,Direction
@@ -35,6 +36,7 @@ def main2(list_size):
     maze2 = maze(maze_cells,width,height)
     pv = pathfinding_visualizer(maze2)
     pv.generate((0,0))
+    bfs.pathfind(pv,(0,0))
     while(True):
         print
 
