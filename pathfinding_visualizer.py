@@ -75,10 +75,25 @@ class pathfinding_visualizer:
 
             self.display_cell_walls(current_cell)
             pygame.display.update()
-            #time.sleep(0.01)
+            time.sleep(0.01)
 
-    def draw_square(self,pos):
-        pygame.draw.rect(self.screen,(255,0,0),(10+pos[0]*60,10+pos[1]*60,50,50))
+    def draw_square(self, cell, color):
+        pygame.draw.rect(self.screen,color,(10+cell.coordinates[0]*60,10+cell.coordinates[1]*60,50,50))
         pygame.display.update()
+
+    def draw_body_recursion(self,cell):
+        pygame.draw.rect(self.screen,(255,0,0),(10+cell.coordinates[0]*60,10+cell.coordinates[1]*60,50,50))
+        if(cell.coordinates != (0,0)):
+            x_cord= (cell.coordinates[0]+cell.previous.coordinates[0])*30+10
+            y_cord= (cell.coordinates[1]+cell.previous.coordinates[1])*30+10
+            self.draw_body_recursion(cell.previous)
+            pygame.draw.rect(self.screen,(255,0,0),(x_cord,y_cord,50,50))
+    
+    def draw_body(self,cell):
+        self.draw_body_recursion(cell)
+        pygame.display.update()
+        time.sleep(0.02)
+
+
 
 
